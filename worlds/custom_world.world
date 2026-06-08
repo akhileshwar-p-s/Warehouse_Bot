@@ -18,10 +18,10 @@
     <plugin filename="gz-sim-sensors-system"
             name="gz::sim::systems::Sensors">
       <render_engine>ogre2</render_engine>
-    </plugin>        
+    </plugin>
 
     <scene>
-      <ambient>0.55 0.55 0.55 1</ambient>
+      <ambient>0.58 0.58 0.58 1</ambient>
       <background>0.78 0.86 0.94 1</background>
       <shadows>true</shadows>
     </scene>
@@ -29,9 +29,33 @@
     <light name="sun" type="directional">
       <cast_shadows>true</cast_shadows>
       <pose>0 0 10 0 0 0</pose>
-      <diffuse>1.0 0.95 0.85 1</diffuse>
+      <diffuse>1.0 0.96 0.88 1</diffuse>
       <specular>0.3 0.3 0.3 1</specular>
       <direction>-0.4 0.2 -0.9</direction>
+    </light>
+
+    <light name="warehouse_overhead_light_1" type="point">
+      <pose>-4 0 5.5 0 0 0</pose>
+      <diffuse>0.95 0.95 0.9 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>13</range>
+        <constant>0.5</constant>
+        <linear>0.05</linear>
+        <quadratic>0.01</quadratic>
+      </attenuation>
+    </light>
+
+    <light name="warehouse_overhead_light_2" type="point">
+      <pose>4 0 5.5 0 0 0</pose>
+      <diffuse>0.95 0.95 0.9 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>13</range>
+        <constant>0.5</constant>
+        <linear>0.05</linear>
+        <quadratic>0.01</quadratic>
+      </attenuation>
     </light>
 
     <model name="ground_plane">
@@ -45,7 +69,7 @@
             </plane>
           </geometry>
         </collision>
-        <visual name="visual">
+        <visual name="warehouse_floor_visual">
           <geometry>
             <plane>
               <normal>0 0 1</normal>
@@ -53,9 +77,9 @@
             </plane>
           </geometry>
           <material>
-            <ambient>0.72 0.72 0.68 1</ambient>
-            <diffuse>0.72 0.72 0.68 1</diffuse>
-            <specular>0.15 0.15 0.15 1</specular>
+            <ambient>0.62 0.63 0.60 1</ambient>
+            <diffuse>0.62 0.63 0.60 1</diffuse>
+            <specular>0.12 0.12 0.12 1</specular>
           </material>
         </visual>
       </link>
@@ -71,8 +95,8 @@
         <visual name="visual">
           <geometry><box><size>20 0.2 2</size></box></geometry>
           <material>
-            <ambient>0.7 0.72 0.76 1</ambient>
-            <diffuse>0.7 0.72 0.76 1</diffuse>
+            <ambient>0.66 0.68 0.72 1</ambient>
+            <diffuse>0.66 0.68 0.72 1</diffuse>
             <specular>0.2 0.2 0.2 1</specular>
           </material>
         </visual>
@@ -89,8 +113,8 @@
         <visual name="visual">
           <geometry><box><size>20 0.2 2</size></box></geometry>
           <material>
-            <ambient>0.7 0.72 0.76 1</ambient>
-            <diffuse>0.7 0.72 0.76 1</diffuse>
+            <ambient>0.66 0.68 0.72 1</ambient>
+            <diffuse>0.66 0.68 0.72 1</diffuse>
             <specular>0.2 0.2 0.2 1</specular>
           </material>
         </visual>
@@ -107,8 +131,8 @@
         <visual name="visual">
           <geometry><box><size>0.2 20 2</size></box></geometry>
           <material>
-            <ambient>0.7 0.72 0.76 1</ambient>
-            <diffuse>0.7 0.72 0.76 1</diffuse>
+            <ambient>0.66 0.68 0.72 1</ambient>
+            <diffuse>0.66 0.68 0.72 1</diffuse>
             <specular>0.2 0.2 0.2 1</specular>
           </material>
         </visual>
@@ -125,136 +149,339 @@
         <visual name="visual">
           <geometry><box><size>0.2 20 2</size></box></geometry>
           <material>
-            <ambient>0.7 0.72 0.76 1</ambient>
-            <diffuse>0.7 0.72 0.76 1</diffuse>
+            <ambient>0.66 0.68 0.72 1</ambient>
+            <diffuse>0.66 0.68 0.72 1</diffuse>
             <specular>0.2 0.2 0.2 1</specular>
           </material>
         </visual>
       </link>
     </model>
 
-    <model name="red_crate_stack">
+    <model name="robot_home_position_dock">
       <static>true</static>
-      <pose>3 3 0.5 0 0 0</pose>
+      <pose>0 -7.5 0.03 0 0 0</pose>
       <link name="link">
-        <collision name="collision">
-          <geometry><box><size>1 1 1</size></box></geometry>
-        </collision>
-        <visual name="visual">
-          <geometry><box><size>1 1 1</size></box></geometry>
+        <visual name="green_home_pad">
+          <geometry><box><size>2.2 1.6 0.04</size></box></geometry>
           <material>
-            <ambient>0.75 0.12 0.08 1</ambient>
-            <diffuse>0.75 0.12 0.08 1</diffuse>
-            <specular>0.15 0.1 0.1 1</specular>
+            <ambient>0.05 0.45 0.22 1</ambient>
+            <diffuse>0.05 0.45 0.22 1</diffuse>
+            <specular>0.08 0.12 0.08 1</specular>
+          </material>
+        </visual>
+        <visual name="home_heading_arrow">
+          <pose>0 0.35 0.04 0 0 0</pose>
+          <geometry><box><size>0.35 0.8 0.03</size></box></geometry>
+          <material>
+            <ambient>0.95 0.95 0.95 1</ambient>
+            <diffuse>0.95 0.95 0.95 1</diffuse>
+          </material>
+        </visual>
+        <visual name="home_position_label_board">
+          <pose>0 -0.95 0.5 0 0 0</pose>
+          <geometry><box><size>2.0 0.08 0.7</size></box></geometry>
+          <material>
+            <ambient>0.04 0.18 0.12 1</ambient>
+            <diffuse>0.04 0.18 0.12 1</diffuse>
           </material>
         </visual>
       </link>
     </model>
 
-    <model name="blue_shipping_bin">
+    <model name="main_aisle_yellow_lane_markings">
       <static>true</static>
-      <pose>-3 -3 0.5 0 0 0</pose>
       <link name="link">
-        <collision name="collision">
-          <geometry><box><size>1 1 1</size></box></geometry>
-        </collision>
-        <visual name="visual">
-          <geometry><box><size>1 1 1</size></box></geometry>
+        <visual name="left_lane_line">
+          <pose>-1.3 -2.2 0.015 0 0 0</pose>
+          <geometry><box><size>0.08 10.8 0.02</size></box></geometry>
           <material>
-            <ambient>0.05 0.25 0.85 1</ambient>
-            <diffuse>0.05 0.25 0.85 1</diffuse>
-            <specular>0.1 0.1 0.2 1</specular>
+            <ambient>0.95 0.72 0.08 1</ambient>
+            <diffuse>0.95 0.72 0.08 1</diffuse>
+          </material>
+        </visual>
+        <visual name="right_lane_line">
+          <pose>1.3 -2.2 0.015 0 0 0</pose>
+          <geometry><box><size>0.08 10.8 0.02</size></box></geometry>
+          <material>
+            <ambient>0.95 0.72 0.08 1</ambient>
+            <diffuse>0.95 0.72 0.08 1</diffuse>
+          </material>
+        </visual>
+        <visual name="cross_lane_line">
+          <pose>0 -5.5 0.016 0 0 0</pose>
+          <geometry><box><size>13.5 0.08 0.02</size></box></geometry>
+          <material>
+            <ambient>0.95 0.72 0.08 1</ambient>
+            <diffuse>0.95 0.72 0.08 1</diffuse>
           </material>
         </visual>
       </link>
     </model>
 
-    <model name="green_pallet_load">
+    <model name="sensors_shelf">
       <static>true</static>
-      <pose>-3 4 0.5 0 0 0</pose>
+      <pose>-6 1.6 0 0 0 0</pose>
       <link name="link">
-        <collision name="collision">
-          <geometry><box><size>1 1 1</size></box></geometry>
+        <collision name="sensors_shelf_collision">
+          <pose>0 0 0.9 0 0 0</pose>
+          <geometry><box><size>0.9 5.6 1.8</size></box></geometry>
         </collision>
-        <visual name="visual">
-          <geometry><box><size>1 1 1</size></box></geometry>
-          <material>
-            <ambient>0.1 0.55 0.18 1</ambient>
-            <diffuse>0.1 0.55 0.18 1</diffuse>
-            <specular>0.1 0.15 0.1 1</specular>
-          </material>
+        <visual name="sensors_shelf_blue_label_board">
+          <pose>0 -3.0 1.55 0 0 0</pose>
+          <geometry><box><size>1.2 0.12 0.55</size></box></geometry>
+          <material><ambient>0.03 0.18 0.55 1</ambient><diffuse>0.03 0.18 0.55 1</diffuse></material>
+        </visual>
+        <visual name="sensors_shelf_metal_frame">
+          <pose>0 0 0.9 0 0 0</pose>
+          <geometry><box><size>0.12 5.7 1.8</size></box></geometry>
+          <material><ambient>0.18 0.2 0.22 1</ambient><diffuse>0.18 0.2 0.22 1</diffuse></material>
+        </visual>
+        <visual name="sensors_shelf_bottom_deck">
+          <pose>0 0 0.25 0 0 0</pose>
+          <geometry><box><size>0.95 5.7 0.12</size></box></geometry>
+          <material><ambient>0.48 0.30 0.14 1</ambient><diffuse>0.48 0.30 0.14 1</diffuse></material>
+        </visual>
+        <visual name="sensors_shelf_middle_deck">
+          <pose>0 0 0.9 0 0 0</pose>
+          <geometry><box><size>0.95 5.7 0.12</size></box></geometry>
+          <material><ambient>0.48 0.30 0.14 1</ambient><diffuse>0.48 0.30 0.14 1</diffuse></material>
+        </visual>
+        <visual name="sensors_shelf_top_deck">
+          <pose>0 0 1.55 0 0 0</pose>
+          <geometry><box><size>0.95 5.7 0.12</size></box></geometry>
+          <material><ambient>0.48 0.30 0.14 1</ambient><diffuse>0.48 0.30 0.14 1</diffuse></material>
+        </visual>
+        <visual name="lidar_boxes">
+          <pose>0.15 -1.5 0.55 0 0 0</pose>
+          <geometry><box><size>0.45 0.7 0.45</size></box></geometry>
+          <material><ambient>0.1 0.38 0.85 1</ambient><diffuse>0.1 0.38 0.85 1</diffuse></material>
+        </visual>
+        <visual name="camera_boxes">
+          <pose>-0.15 0.5 1.2 0 0 0</pose>
+          <geometry><box><size>0.45 0.75 0.45</size></box></geometry>
+          <material><ambient>0.08 0.55 0.72 1</ambient><diffuse>0.08 0.55 0.72 1</diffuse></material>
         </visual>
       </link>
     </model>
 
-    <model name="yellow_barrel">
+    <model name="mcu_shelf">
       <static>true</static>
-      <pose>4 -2 0.45 0 0 0</pose>
+      <pose>-3 1.6 0 0 0 0</pose>
       <link name="link">
-        <collision name="collision">
-          <geometry><cylinder><radius>0.35</radius><length>0.9</length></cylinder></geometry>
+        <collision name="mcu_shelf_collision">
+          <pose>0 0 0.9 0 0 0</pose>
+          <geometry><box><size>0.9 5.6 1.8</size></box></geometry>
         </collision>
-        <visual name="visual">
-          <geometry><cylinder><radius>0.35</radius><length>0.9</length></cylinder></geometry>
-          <material>
-            <ambient>0.95 0.75 0.08 1</ambient>
-            <diffuse>0.95 0.75 0.08 1</diffuse>
-            <specular>0.2 0.18 0.05 1</specular>
-          </material>
+        <visual name="mcu_shelf_purple_label_board">
+          <pose>0 -3.0 1.55 0 0 0</pose>
+          <geometry><box><size>1.2 0.12 0.55</size></box></geometry>
+          <material><ambient>0.36 0.15 0.55 1</ambient><diffuse>0.36 0.15 0.55 1</diffuse></material>
+        </visual>
+        <visual name="mcu_shelf_metal_frame">
+          <pose>0 0 0.9 0 0 0</pose>
+          <geometry><box><size>0.12 5.7 1.8</size></box></geometry>
+          <material><ambient>0.18 0.2 0.22 1</ambient><diffuse>0.18 0.2 0.22 1</diffuse></material>
+        </visual>
+        <visual name="mcu_shelf_bottom_deck">
+          <pose>0 0 0.25 0 0 0</pose>
+          <geometry><box><size>0.95 5.7 0.12</size></box></geometry>
+          <material><ambient>0.48 0.30 0.14 1</ambient><diffuse>0.48 0.30 0.14 1</diffuse></material>
+        </visual>
+        <visual name="mcu_shelf_middle_deck">
+          <pose>0 0 0.9 0 0 0</pose>
+          <geometry><box><size>0.95 5.7 0.12</size></box></geometry>
+          <material><ambient>0.48 0.30 0.14 1</ambient><diffuse>0.48 0.30 0.14 1</diffuse></material>
+        </visual>
+        <visual name="mcu_shelf_top_deck">
+          <pose>0 0 1.55 0 0 0</pose>
+          <geometry><box><size>0.95 5.7 0.12</size></box></geometry>
+          <material><ambient>0.48 0.30 0.14 1</ambient><diffuse>0.48 0.30 0.14 1</diffuse></material>
+        </visual>
+        <visual name="arduino_cartons">
+          <pose>0.16 -0.8 0.55 0 0 0</pose>
+          <geometry><box><size>0.48 0.8 0.35</size></box></geometry>
+          <material><ambient>0.1 0.62 0.34 1</ambient><diffuse>0.1 0.62 0.34 1</diffuse></material>
+        </visual>
+        <visual name="esp32_trays">
+          <pose>-0.16 1.1 1.2 0 0 0</pose>
+          <geometry><box><size>0.48 0.9 0.35</size></box></geometry>
+          <material><ambient>0.05 0.32 0.18 1</ambient><diffuse>0.05 0.32 0.18 1</diffuse></material>
         </visual>
       </link>
     </model>
 
-    <model name="orange_barrel">
+    <model name="battery_shelf">
       <static>true</static>
-      <pose>-5 1.5 0.45 0 0 0</pose>
+      <pose>0 1.6 0 0 0 0</pose>
       <link name="link">
-        <collision name="collision">
-          <geometry><cylinder><radius>0.35</radius><length>0.9</length></cylinder></geometry>
+        <collision name="battery_shelf_collision">
+          <pose>0 0 0.9 0 0 0</pose>
+          <geometry><box><size>0.9 5.6 1.8</size></box></geometry>
         </collision>
-        <visual name="visual">
-          <geometry><cylinder><radius>0.35</radius><length>0.9</length></cylinder></geometry>
-          <material>
-            <ambient>0.95 0.38 0.05 1</ambient>
-            <diffuse>0.95 0.38 0.05 1</diffuse>
-            <specular>0.2 0.12 0.05 1</specular>
-          </material>
+        <visual name="battery_shelf_green_label_board">
+          <pose>0 -3.0 1.55 0 0 0</pose>
+          <geometry><box><size>1.2 0.12 0.55</size></box></geometry>
+          <material><ambient>0.04 0.42 0.18 1</ambient><diffuse>0.04 0.42 0.18 1</diffuse></material>
+        </visual>
+        <visual name="battery_shelf_metal_frame">
+          <pose>0 0 0.9 0 0 0</pose>
+          <geometry><box><size>0.12 5.7 1.8</size></box></geometry>
+          <material><ambient>0.18 0.2 0.22 1</ambient><diffuse>0.18 0.2 0.22 1</diffuse></material>
+        </visual>
+        <visual name="battery_shelf_bottom_deck">
+          <pose>0 0 0.25 0 0 0</pose>
+          <geometry><box><size>0.95 5.7 0.12</size></box></geometry>
+          <material><ambient>0.48 0.30 0.14 1</ambient><diffuse>0.48 0.30 0.14 1</diffuse></material>
+        </visual>
+        <visual name="battery_shelf_middle_deck">
+          <pose>0 0 0.9 0 0 0</pose>
+          <geometry><box><size>0.95 5.7 0.12</size></box></geometry>
+          <material><ambient>0.48 0.30 0.14 1</ambient><diffuse>0.48 0.30 0.14 1</diffuse></material>
+        </visual>
+        <visual name="battery_shelf_top_deck">
+          <pose>0 0 1.55 0 0 0</pose>
+          <geometry><box><size>0.95 5.7 0.12</size></box></geometry>
+          <material><ambient>0.48 0.30 0.14 1</ambient><diffuse>0.48 0.30 0.14 1</diffuse></material>
+        </visual>
+        <visual name="lipo_battery_cases">
+          <pose>0.16 -1.4 0.55 0 0 0</pose>
+          <geometry><box><size>0.48 1.0 0.4</size></box></geometry>
+          <material><ambient>0.08 0.08 0.08 1</ambient><diffuse>0.08 0.08 0.08 1</diffuse></material>
+        </visual>
+        <visual name="battery_warning_bins">
+          <pose>-0.16 1.2 1.2 0 0 0</pose>
+          <geometry><box><size>0.48 0.9 0.4</size></box></geometry>
+          <material><ambient>0.95 0.72 0.08 1</ambient><diffuse>0.95 0.72 0.08 1</diffuse></material>
         </visual>
       </link>
     </model>
 
-    <model name="storage_rack_left">
+    <model name="actuator_shelf">
       <static>true</static>
-      <pose>0 5.5 0.85 0 0 0</pose>
+      <pose>3 1.6 0 0 0 0</pose>
       <link name="link">
-        <collision name="collision">
-          <geometry><box><size>5.0 0.45 1.7</size></box></geometry>
+        <collision name="actuator_shelf_collision">
+          <pose>0 0 0.9 0 0 0</pose>
+          <geometry><box><size>0.9 5.6 1.8</size></box></geometry>
         </collision>
-        <visual name="visual">
-          <geometry><box><size>5.0 0.45 1.7</size></box></geometry>
-          <material>
-            <ambient>0.5 0.28 0.12 1</ambient>
-            <diffuse>0.5 0.28 0.12 1</diffuse>
-            <specular>0.12 0.08 0.04 1</specular>
-          </material>
+        <visual name="actuator_shelf_orange_label_board">
+          <pose>0 -3.0 1.55 0 0 0</pose>
+          <geometry><box><size>1.2 0.12 0.55</size></box></geometry>
+          <material><ambient>0.82 0.34 0.04 1</ambient><diffuse>0.82 0.34 0.04 1</diffuse></material>
+        </visual>
+        <visual name="actuator_shelf_metal_frame">
+          <pose>0 0 0.9 0 0 0</pose>
+          <geometry><box><size>0.12 5.7 1.8</size></box></geometry>
+          <material><ambient>0.18 0.2 0.22 1</ambient><diffuse>0.18 0.2 0.22 1</diffuse></material>
+        </visual>
+        <visual name="actuator_shelf_bottom_deck">
+          <pose>0 0 0.25 0 0 0</pose>
+          <geometry><box><size>0.95 5.7 0.12</size></box></geometry>
+          <material><ambient>0.48 0.30 0.14 1</ambient><diffuse>0.48 0.30 0.14 1</diffuse></material>
+        </visual>
+        <visual name="actuator_shelf_middle_deck">
+          <pose>0 0 0.9 0 0 0</pose>
+          <geometry><box><size>0.95 5.7 0.12</size></box></geometry>
+          <material><ambient>0.48 0.30 0.14 1</ambient><diffuse>0.48 0.30 0.14 1</diffuse></material>
+        </visual>
+        <visual name="actuator_shelf_top_deck">
+          <pose>0 0 1.55 0 0 0</pose>
+          <geometry><box><size>0.95 5.7 0.12</size></box></geometry>
+          <material><ambient>0.48 0.30 0.14 1</ambient><diffuse>0.48 0.30 0.14 1</diffuse></material>
+        </visual>
+        <visual name="servo_motor_boxes">
+          <pose>0.16 -0.9 0.55 0 0 0</pose>
+          <geometry><box><size>0.5 0.85 0.42</size></box></geometry>
+          <material><ambient>0.72 0.12 0.1 1</ambient><diffuse>0.72 0.12 0.1 1</diffuse></material>
+        </visual>
+        <visual name="linear_actuator_crates">
+          <pose>-0.16 1.4 1.2 0 0 0</pose>
+          <geometry><box><size>0.5 1.0 0.42</size></box></geometry>
+          <material><ambient>0.45 0.45 0.48 1</ambient><diffuse>0.45 0.45 0.48 1</diffuse></material>
         </visual>
       </link>
     </model>
 
-    <model name="storage_rack_right">
+    <model name="wheels_shelf">
       <static>true</static>
-      <pose>2 -5.5 0.85 0 0 0</pose>
+      <pose>6 1.6 0 0 0 0</pose>
+      <link name="link">
+        <collision name="wheels_shelf_collision">
+          <pose>0 0 0.9 0 0 0</pose>
+          <geometry><box><size>0.9 5.6 1.8</size></box></geometry>
+        </collision>
+        <visual name="wheels_shelf_red_label_board">
+          <pose>0 -3.0 1.55 0 0 0</pose>
+          <geometry><box><size>1.2 0.12 0.55</size></box></geometry>
+          <material><ambient>0.70 0.06 0.08 1</ambient><diffuse>0.70 0.06 0.08 1</diffuse></material>
+        </visual>
+        <visual name="wheels_shelf_metal_frame">
+          <pose>0 0 0.9 0 0 0</pose>
+          <geometry><box><size>0.12 5.7 1.8</size></box></geometry>
+          <material><ambient>0.18 0.2 0.22 1</ambient><diffuse>0.18 0.2 0.22 1</diffuse></material>
+        </visual>
+        <visual name="wheels_shelf_bottom_deck">
+          <pose>0 0 0.25 0 0 0</pose>
+          <geometry><box><size>0.95 5.7 0.12</size></box></geometry>
+          <material><ambient>0.48 0.30 0.14 1</ambient><diffuse>0.48 0.30 0.14 1</diffuse></material>
+        </visual>
+        <visual name="wheels_shelf_middle_deck">
+          <pose>0 0 0.9 0 0 0</pose>
+          <geometry><box><size>0.95 5.7 0.12</size></box></geometry>
+          <material><ambient>0.48 0.30 0.14 1</ambient><diffuse>0.48 0.30 0.14 1</diffuse></material>
+        </visual>
+        <visual name="wheels_shelf_top_deck">
+          <pose>0 0 1.55 0 0 0</pose>
+          <geometry><box><size>0.95 5.7 0.12</size></box></geometry>
+          <material><ambient>0.48 0.30 0.14 1</ambient><diffuse>0.48 0.30 0.14 1</diffuse></material>
+        </visual>
+        <visual name="rubber_wheel_stack_front">
+          <pose>0.16 -1.2 0.55 1.5708 0 0</pose>
+          <geometry><cylinder><radius>0.28</radius><length>0.38</length></cylinder></geometry>
+          <material><ambient>0.03 0.03 0.03 1</ambient><diffuse>0.03 0.03 0.03 1</diffuse></material>
+        </visual>
+        <visual name="caster_wheel_bins">
+          <pose>-0.16 1.2 1.2 0 0 0</pose>
+          <geometry><box><size>0.5 0.9 0.42</size></box></geometry>
+          <material><ambient>0.1 0.1 0.12 1</ambient><diffuse>0.1 0.1 0.12 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="electronics_packing_table">
+      <static>true</static>
+      <pose>-5.8 -6.7 0.45 0 0 0</pose>
       <link name="link">
         <collision name="collision">
-          <geometry><box><size>5.0 0.45 1.7</size></box></geometry>
+          <geometry><box><size>2.2 0.8 0.9</size></box></geometry>
         </collision>
-        <visual name="visual">
-          <geometry><box><size>5.0 0.45 1.7</size></box></geometry>
-          <material>
-            <ambient>0.5 0.28 0.12 1</ambient>
-            <diffuse>0.5 0.28 0.12 1</diffuse>
-            <specular>0.12 0.08 0.04 1</specular>
-          </material>
+        <visual name="table_top">
+          <geometry><box><size>2.2 0.8 0.18</size></box></geometry>
+          <material><ambient>0.46 0.29 0.13 1</ambient><diffuse>0.46 0.29 0.13 1</diffuse></material>
+        </visual>
+        <visual name="anti_static_mat">
+          <pose>0 0 0.12 0 0 0</pose>
+          <geometry><box><size>1.7 0.55 0.04</size></box></geometry>
+          <material><ambient>0.02 0.16 0.15 1</ambient><diffuse>0.02 0.16 0.15 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="incoming_parts_pallets">
+      <static>true</static>
+      <pose>6.2 -6.8 0.35 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>2.0 1.4 0.7</size></box></geometry>
+        </collision>
+        <visual name="pallet_base">
+          <geometry><box><size>2.0 1.4 0.25</size></box></geometry>
+          <material><ambient>0.38 0.23 0.11 1</ambient><diffuse>0.38 0.23 0.11 1</diffuse></material>
+        </visual>
+        <visual name="sealed_cartons">
+          <pose>0 0 0.45 0 0 0</pose>
+          <geometry><box><size>1.7 1.1 0.55</size></box></geometry>
+          <material><ambient>0.62 0.42 0.22 1</ambient><diffuse>0.62 0.42 0.22 1</diffuse></material>
         </visual>
       </link>
     </model>

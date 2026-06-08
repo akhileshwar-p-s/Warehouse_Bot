@@ -1,0 +1,32 @@
+shelves:
+  sensors_shelf:
+    label: "Sensors Shelf"
+    x: -8.0
+    y: 6.0
+    yaw: 1.5708
+  mcu_shelf:
+    label: "MCU Shelf"
+    x: -4.0
+    y: 5.5
+    yaw: 1.5708
+  battery_shelf:
+    label: "Battery Shelf"
+    x: 0.0
+    y: 5.5
+    yaw: 1.5708
+  actuator_shelf:
+    label: "Actuator Shelf"
+    x: 4.0
+    y: 5.8
+    yaw: 1.5708
+  wheels_shelf:
+    label: "Wheels Shelf"
+    x: 6.3
+    y: 10.5
+    yaw: 1.5708
+
+home:
+  label: "Home Position"
+  x: 0.0
+  y: 0.0
+  yaw: 1.5708

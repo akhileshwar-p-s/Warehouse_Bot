@@ -10,4 +10,9 @@ install(DIRECTORY worlds DESTINATION share/${PROJECT_NAME})
 install(DIRECTORY maps DESTINATION share/${PROJECT_NAME})
 install(DIRECTORY config DESTINATION share/${PROJECT_NAME})
 
+install(PROGRAMS
+  scripts/shelf_gui.py
+  DESTINATION lib/${PROJECT_NAME}
+)
+
 ament_package()
