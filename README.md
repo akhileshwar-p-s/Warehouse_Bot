@@ -154,12 +154,6 @@ When the map was saved during a SLAM session, the robot happened to be at a diff
 
 ---
 
-## 📄 License
-
-This project is submitted as part of the ROS 2 Nano Degree program at **myEquation**.
-
----
-
 ## 👤 Author
 
 **Akhileshwar Pratap Singh**
