@@ -1,8 +1,0 @@
-# Build artifacts
-build/
-install/
-log/
-*.pyc
-__pycache__/
-*.egg-info/
-.vscode/
